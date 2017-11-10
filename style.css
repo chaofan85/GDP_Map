@@ -3,3 +3,12 @@
   height: 300px;
   border: 1px solid black;
 }
+
+.slidecontainer {
+  width: 200px;
+  margin: auto;
+}
+
+path:hover {
+  cursor: pointer;
+}

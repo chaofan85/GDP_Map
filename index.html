@@ -7,15 +7,31 @@
 
   </head>
   <body>
-    <div id="container" style="position: relative; width: 1000px; height: 700px;"></div>
-  </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    <main>
+      <section>
+        <div id="container" style="position: relative; width: 800px; height: 400px;"></div>
+        <div class="country-info">
+
+        </div>
+      </section>
+
+      <div class="slidecontainer">
+        <p class="year"></p>
+        <input class="slider" type="range" min="1960" max="2016" value="2016">
+
+      </div>
+    </main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous">
-  </script>
-  <script src="node_modules/d3/d3.min.js"></script>
-  <script src="node_modules/topojson/dist/topojson.min.js"></script>
-  <script src="node_modules/datamaps/dist/datamaps.world.hires.min.js"></script>
-  <script type="text/javascript" src="./scripts/country_codes.js"></script>
-  <script type="text/javascript" src="./scripts/app.js"></script>
+    </script>
+    <script src="node_modules/d3/d3.min.js"></script>
+    <script src="node_modules/topojson/dist/topojson.min.js"></script>
+    <script src="node_modules/datamaps/dist/datamaps.world.hires.min.js"></script>
+    <script type="text/javascript" src="./scripts/country_codes.js"></script>
+    <script type="text/javascript" src="./scripts/app.js"></script>
+  </body>
 </html>
