@@ -2,31 +2,26 @@ $(function() {
   const map = new Datamap({
     element: document.getElementById('container'),
     fills: {
-              LEVEL1: 'red',
-              LEVEL2: 'orage',
-              LEVEL3: 'yello',
-              LEVEL4: 'green',
-              LEVEL5: 'blue',
-              LEVEL6: 'purple',
-              defaultFill: '#463321'
+              LEVEL1: '#dbdd9b',
+              LEVEL2: '#9e8d5b',
+              LEVEL3: '#6a9e5b',
+              LEVEL4: '#518c00',
+              LEVEL5: '#ccc500',
+              LEVEL6: 'orange',
+              NORECORD: '#cecece'
           },
     scope: 'world',
     options: {
       defaultFill: "#352341"
     },
     geographyConfig: {
-      popupTemplate: function(geo, data) {
-        return ['<div class="hoverinfo"><strong>',
-        'Number of things in ' + geo.properties.name,
-        ': ' + data.numberOfThings,
-        '</strong></div>'].join('');
-      }
-    }
+      borderColor: 'white',
+    },
   });
 
-
-
   let allData = [];
+
+
   function renderDataByYear(year) {
     let count = 0;
     for (var i = 0; i < 6; i++) {
@@ -40,12 +35,11 @@ $(function() {
             let renderedData = allData.map(data => {
               let code = codes[data.country.id];
               return {
-                [code]: {fillKey: getFillKey((data.value/1000000000).toFixed(2))}
+                [code]: {fillKey: getFillKey((data.value/1000000000))}
               };
-            })
-          ;
+            });
             let dataObj = toObject(renderedData);
-            console.log(dataObj);
+            console.log(renderedData);
             renderMap(dataObj);
           }
         }
@@ -54,7 +48,7 @@ $(function() {
   }
 
   function getFillKey(data) {
-    if (data === 0) { return "defaultFill"; }
+    if (data === 0) { return "NORECORD"; }
     if (data < 1) { return "LEVEL1"; }
     if (data < 10) { return "LEVEL2"; }
     if (data < 100) { return "LEVEL3"; }
@@ -90,19 +84,51 @@ $(function() {
     });
   }
 
+  function getCountryInfo() {
+    return allData.map(data => {
+      let code = codes[data.country.id];
+      return data.value ?
+      { [code]: 'GDP: '+(data.value/1000000000).toFixed(2)+'M' }
+      :
+      { [code]: 'No Record' };
+    });
+  }
+
   let startYear = parseInt($('.slider').val());
   $('.year').text(startYear);
-
   renderDataByYear(startYear);
 
-  $('.slider').on('change', function(){
-    $('.year').text(this.value);
+
+  $('.slider').on('input', function(){
+    allData = [];
+    $('.year').val(parseInt(this.value));
+
     renderDataByYear(parseInt(this.value));
   });
 
   $('svg path').on('mouseover', function() {
     const countryAbbr = $(this).attr('class').substr(17,19);
+    const country = countries[countryAbbr];
+    $('h3').text(country);
 
+    const year = $('.year').val();
+    $('.data-year').text('Year ' + year)
+
+    let gdpData = getCountryInfo();
+    let gdpObj = Object.assign({}, ...gdpData);
+    const countryGdp = gdpObj[countryAbbr];
+    $(".gdp span").text(countryGdp);
+
+    const url = `https://en.wikipedia.org/wiki/${country}`;
+    $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
+  });
+
+  $('.year-input').submit(function(e) {
+    allData = [];
+    e.preventDefault();
+    const year = parseInt($(".year").val());
+    $(".slider").val(year);
+    renderDataByYear(year);
   });
 
 });
