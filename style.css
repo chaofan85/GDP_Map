@@ -14,21 +14,21 @@ section {
   width: 100%;
   display: flex;
   /*justify-content: space-around;*/
-  /*border: 1px solid grey;*/
-  border-radius: 5px;
+  border: 1px solid grey;
+  border-radius: 3px;
   background: white;
   margin-top: 40px;
-  box-shadow: 3px 3px 2px #474747;
+  box-shadow: 0 0 8px #474747;
   position: relative;
   flex-wrap: wrap;
   position: relative;
 }
 
-.string {
-  width: 300px;
+.pin {
+  width: 80px;
   position: absolute;
-  top: -60px;
-  z-index: -1;
+  top: -15px;
+  left: 45%;
 }
 
 .notice {
@@ -66,7 +66,7 @@ path:hover {
 }
 
 .country-data {
-  width: 250px;
+  width: 270px;
   height: 280px;
   font-family: 'Lato', sans-serif;
   font-size: 22px;
@@ -163,7 +163,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .color3 {
-  background: #6a9e5b;
+  background: #b3c691;
 }
 
 .color4 {
