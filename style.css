@@ -2,7 +2,7 @@ body {
   /*background-image: url(images/wall.jpg);
   background-size: 100%;
   background-repeat: no-repeat;*/
-  background: #e9e9e9;
+  background: #efefef;
 }
 
 main {
@@ -13,12 +13,14 @@ main {
 section {
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  border: 10px solid #aaa;
+  /*justify-content: space-around;*/
+  /*border: 1px solid grey;*/
   border-radius: 5px;
   background: white;
-  margin-top: 70px;
-  box-shadow: 5px 5px 4px #474747;
+  margin-top: 40px;
+  box-shadow: 3px 3px 2px #474747;
+  position: relative;
+  flex-wrap: wrap;
   position: relative;
 }
 
@@ -30,8 +32,8 @@ section {
 }
 
 .notice {
-  font-family: 'Nothing You Could Do', cursive;
-  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
   margin-left: 25px;
 }
 
@@ -41,7 +43,7 @@ section {
 }
 
 .slider {
-  width: 150px;
+  width: 100%;
   margin-top: 15px;
 }
 
@@ -56,31 +58,6 @@ path:hover {
   box-sizing: border-box;
 }
 
-.country-data {
-  width: 280px;
-  height: 280px;
-  font-family: 'Nothing You Could Do', cursive;
-  font-size: 22px;
-  border-radius: 3px;
-  padding: 20px;
-  margin-top: 40px;
-  box-sizing: border-box;
-  color: #444;
-  /*background: #fdffbc;*/
-  transform: rotate(10deg);
-  /*box-shadow: -2px 2px 2px #606060;*/
-  position: relative;
-}
-
-.country-data h3, .country-data p {
-  margin: 0.5em;
-}
-
-.country-data a {
-  text-decoration: none;
-  color: #0025ba;
-}
-
 .tape {
   width: 100px;
   position: absolute;
@@ -88,16 +65,119 @@ path:hover {
   right: 0;
 }
 
-.year {
-  width: 150px;
-  height: 40px;
+.country-data {
+  width: 250px;
+  height: 280px;
+  font-family: 'Lato', sans-serif;
   font-size: 22px;
+  border-radius: 3px;
+  padding: 20px 30px;
+  margin-top: 40px;
+  box-sizing: border-box;
+  color: #444;
+  background: #fdffbc;
+  transform: rotate(10deg);
+  box-shadow: -2px 2px 2px #606060;
+  position: relative;
+}
+
+.country-data h3 {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.country-data p {
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+
+.country-data a {
+  text-decoration: none;
+  color: #0025ba;
+  font-size: 16px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.year {
+  width: 100%;
+  height: 40px;
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1.5;
   text-align: center;
   outline: none;
   border: none;
   border-bottom: 1px solid grey;
+  margin: auto;
+}
+
+
+.data-year, .gdp span {
+  font-size: 18px;
+  margin-left: 0;
 }
 
 .wiki:hover {
   cursor: pointer;
+}
+
+.legend {
+  width: 160px;
+  height: 220px;
+  font-family: 'Lato', sans-serif;
+  margin-left: 30px;
+  position: absolute;
+  top: 50%;
+  border: 1px solid grey;
+  box-shadow: -5px 5px 0 #565656;
+}
+
+.legend ul {
+  padding-left: 10px;
+}
+
+.legend li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.used-color {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.color1 {
+  background: #dbdd9b;
+}
+
+.color2 {
+  background: #9e8d5b;
+}
+
+.color3 {
+  background: #6a9e5b;
+}
+
+.color4 {
+  background: #518c00;
+}
+
+.color5 {
+  background: #ccc500;
+}
+
+.color6 {
+  background: orange;
+}
+
+.color7 {
+  background: #cecece;
 }

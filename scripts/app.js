@@ -88,7 +88,7 @@ $(function() {
     return allData.map(data => {
       let code = codes[data.country.id];
       return data.value ?
-      { [code]: 'GDP: '+(data.value/1000000000).toFixed(2)+'M' }
+      { [code]: 'GDP: $ '+(data.value/1000000000).toFixed(2)+'M' }
       :
       { [code]: 'No Record' };
     });
@@ -112,7 +112,7 @@ $(function() {
     $('h3').text(country);
 
     const year = $('.year').val();
-    $('.data-year').text('Year ' + year)
+    $('.data-year').text('YEAR: ' + year)
 
     let gdpData = getCountryInfo();
     let gdpObj = Object.assign({}, ...gdpData);
