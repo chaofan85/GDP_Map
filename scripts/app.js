@@ -112,7 +112,7 @@ $(function() {
   });
 
 
-  $('svg path').on('mouseover', function() {
+  $('svg path').on('click', function() {
     const countryAbbr = $(this).attr('class').substr(17,19);
     const country = countries[countryAbbr];
     const year = $('.year').val();
