@@ -1,7 +1,4 @@
 body {
-  /*background-image: url(images/wall.jpg);
-  background-size: 100%;
-  background-repeat: no-repeat;*/
   background: #efefef;
 }
 
@@ -13,7 +10,6 @@ main {
 section {
   width: 100%;
   display: flex;
-  /*justify-content: space-around;*/
   border: 1px solid grey;
   border-radius: 3px;
   background: white;

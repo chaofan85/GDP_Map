@@ -17,6 +17,6 @@
   "dependencies": {
     "d3": "^3.5.17",
     "datamaps": "^0.5.8",
-    "topojson": "^3.0.2",
+    "topojson": "^3.0.2"
   }
 }
