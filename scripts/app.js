@@ -1,3 +1,6 @@
+import Datamap from '../node_modules/datamaps/dist/datamaps.world.hires.min.js';
+import $ from './jquery-3.2.1.min.js';
+
 $(function() {
 
   const map = new Datamap({
@@ -90,7 +93,6 @@ $(function() {
 
   function fetchData(data) {
     return $.ajax({
-      method: 'GET',
       url: 'https://accesscontrolalloworiginall.herokuapp.com/http://api.worldbank.org/countries/all/indicators/NY.GDP.MKTP.CD',
       dataType: 'json',
       async: true,
