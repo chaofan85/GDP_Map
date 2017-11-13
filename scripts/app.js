@@ -1,5 +1,4 @@
-import Datamap from '../node_modules/datamaps/dist/datamaps.world.hires.min.js';
-import $ from './jquery-3.2.1.min.js';
+import Datamap from 'datamaps';
 
 $(function() {
 
