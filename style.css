@@ -21,7 +21,6 @@ section {
   box-shadow: 0 0 8px #474747;
   position: relative;
   flex-wrap: wrap;
-  position: relative;
 }
 
 .pin {
@@ -180,4 +179,75 @@ input[type=number]::-webkit-outer-spin-button {
 
 .color7 {
   background: #cecece;
+}
+
+.app-info {
+  width: 400px;
+  height: 180px;
+  position: absolute;
+  left: 25%;
+  bottom: 20px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  width: 360px;
+  height: 50px;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 36px;
+  text-align: center;
+  margin: 0;
+}
+
+.source {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+}
+
+.source a {
+  text-decoration: none;
+}
+
+.author {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+}
+
+.icons {
+  width: 170px;
+  display: flex;
+  margin: auto;
+  text-align: center;
+}
+
+.icons div {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.icon1 {
+  background-image: url(images/github.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.icon2 {
+  background-image: url(images/linkedin.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.icon3 {
+  background-image: url(images/angellist.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.icon4 {
+  background-image: url(images/email.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
