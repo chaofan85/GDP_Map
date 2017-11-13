@@ -100,6 +100,10 @@ $(function() {
     });
   }
 
+  function removeSpace(country) {
+    return country.split(" ").join("_");
+  }
+
   let startYear = parseInt($('.slider').val());
   $('.year').text(startYear);
   renderDataByYear(startYear);
@@ -126,7 +130,7 @@ $(function() {
       $(".gdp span").text('No Record');
     }
 
-    const url = `https://en.wikipedia.org/wiki/${country}`;
+    const url = `https://en.wikipedia.org/wiki/${removeSpace(country)}`;
     $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
   });
 
