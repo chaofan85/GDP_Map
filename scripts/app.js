@@ -14,6 +14,7 @@ $(function() {
         NORECORD: '#cecece',
         defaultFill: '#cecece'
     },
+    scope: 'world',
     geographyConfig: {
       borderColor: 'white',
     },
