@@ -225,12 +225,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .title a {
-  text-decoration-style: dotted;
+  text-decoration: none;
 }
 
 .gdp-link {
   font-family: 'Lato', sans-serif;
   font-size: 16px;
+  padding-bottom: 1px;
+  border-bottom: 1px dotted black;
 }
 
 .source {
@@ -246,7 +248,7 @@ input[type=number]::-webkit-outer-spin-button {
 .author {
   font-family: 'Lato', sans-serif;
   text-align: center;
-  
+
 }
 
 .author a {
