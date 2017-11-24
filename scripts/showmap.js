@@ -9,14 +9,20 @@ export function showMap() {
   $('.year').text(startYear);
   gdpMap.renderDataByYear(startYear);
 
+  renderData(gdpMap);
+  getCountryInfo(gdpMap);
+  inputYear(gdpMap);
+}
 
+function renderData(map) {
   $('.slider').on('input', function(){
-    gdpMap.allData = [];
+    map.allData = [];
     $('.year').val(parseInt(this.value));
-    gdpMap.renderDataByYear(parseInt(this.value));
+    map.renderDataByYear(parseInt(this.value));
   });
+}
 
-
+function getCountryInfo(map) {
   $('svg path').on('click', function() {
     const countryAbbr = $(this).attr('class').substr(17,19);
     const country = COUNTRIES[countryAbbr];
@@ -24,23 +30,25 @@ export function showMap() {
     $('h3').text(country);
     $('.data-year').text('YEAR: ' + year);
 
-    if (gdpMap.gdpList[countryAbbr]) {
-      let countryGdp = gdpMap.gdpList[countryAbbr].toFixed(2);
+    if (map.gdpList[countryAbbr]) {
+      let countryGdp = map.gdpList[countryAbbr].toFixed(2);
       $(".gdp span").text('GDP: $'+countryGdp+'B');
     } else {
       $(".gdp span").text('No Record');
     }
 
-    const url = `https://en.wikipedia.org/wiki/${gdpMap.removeSpace(country)}`;
+    const url = `https://en.wikipedia.org/wiki/${map.removeSpace(country)}`;
     $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
   });
+}
 
 
+function inputYear(map) {
   $('.year-input').submit(function(e) {
-    gdpMap.allData = [];
+    map.allData = [];
     e.preventDefault();
     const year = parseInt($(".year").val());
     $(".slider").val(year);
-    gdpMap.renderDataByYear(year);
+    map.renderDataByYear(year);
   });
 }
