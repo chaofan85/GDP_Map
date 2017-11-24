@@ -1,5 +1,5 @@
 
-const codes = {
+export const CODES = {
   "AF": "AFG",
   "AX": "ALA",
   "AL": "ALB",
@@ -251,7 +251,7 @@ const codes = {
   "ZW": "ZWE",
 };
 
-const countries = {
+export const COUNTRIES = {
   AFG: "Afghanistan",
   ALA: "Åland Islands",
   ALB: "Albania",
