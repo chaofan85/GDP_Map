@@ -5,16 +5,16 @@ import { COUNTRIES } from './country_codes.js';
 export function showMap() {
   const gdpMap = new Gdpmap();
 
-  let startYear = parseInt($('.slider').val());
-  $('.year').text(startYear);
-  gdpMap.renderDataByYear(startYear);
-
   renderData(gdpMap);
   getCountryInfo(gdpMap);
   inputYear(gdpMap);
 }
 
 function renderData(map) {
+  let startYear = parseInt($('.slider').val());
+  $('.year').text(startYear);
+  map.renderDataByYear(startYear);
+
   $('.slider').on('input', function(){
     map.allData = [];
     $('.year').val(parseInt(this.value));
