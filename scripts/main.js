@@ -69,55 +69,12 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__country_codes_js__ = __webpack_require__(4);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__showmap_js__ = __webpack_require__(6);
 
 
 
 $(function() {
-
-  const gdpMap = new __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__["a" /* Gdpmap */]();
-
-  let startYear = parseInt($('.slider').val());
-  $('.year').text(startYear);
-  gdpMap.renderDataByYear(startYear);
-
-
-  $('.slider').on('input', function(){
-    gdpMap.allData = [];
-    $('.year').val(parseInt(this.value));
-    gdpMap.renderDataByYear(parseInt(this.value));
-  });
-
-
-  $('svg path').on('click', function() {
-    const countryAbbr = $(this).attr('class').substr(17,19);
-    const country = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["b" /* COUNTRIES */][countryAbbr];
-    const year = $('.year').val();
-    $('h3').text(country);
-    $('.data-year').text('YEAR: ' + year);
-
-    if (gdpMap.gdpList[countryAbbr]) {
-      let countryGdp = gdpMap.gdpList[countryAbbr].toFixed(2);
-      $(".gdp span").text('GDP: $'+countryGdp+'B');
-    } else {
-      $(".gdp span").text('No Record');
-    }
-
-    const url = `https://en.wikipedia.org/wiki/${gdpMap.removeSpace(country)}`;
-    $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
-  });
-
-
-  $('.year-input').submit(function(e) {
-    gdpMap.allData = [];
-    e.preventDefault();
-    const year = parseInt($(".year").val());
-    $(".slider").val(year);
-    gdpMap.renderDataByYear(year);
-  });
-
+  Object(__WEBPACK_IMPORTED_MODULE_0__showmap_js__["a" /* showMap */])();
 });
 
 
@@ -23546,6 +23503,62 @@ function Gdpmap () {
     return country.split(" ").join("_");
   };
 
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = showMap;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__country_codes_js__ = __webpack_require__(4);
+
+
+
+
+function showMap() {
+  const gdpMap = new __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__["a" /* Gdpmap */]();
+
+  let startYear = parseInt($('.slider').val());
+  $('.year').text(startYear);
+  gdpMap.renderDataByYear(startYear);
+
+
+  $('.slider').on('input', function(){
+    gdpMap.allData = [];
+    $('.year').val(parseInt(this.value));
+    gdpMap.renderDataByYear(parseInt(this.value));
+  });
+
+
+  $('svg path').on('click', function() {
+    const countryAbbr = $(this).attr('class').substr(17,19);
+    const country = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["b" /* COUNTRIES */][countryAbbr];
+    const year = $('.year').val();
+    $('h3').text(country);
+    $('.data-year').text('YEAR: ' + year);
+
+    if (gdpMap.gdpList[countryAbbr]) {
+      let countryGdp = gdpMap.gdpList[countryAbbr].toFixed(2);
+      $(".gdp span").text('GDP: $'+countryGdp+'B');
+    } else {
+      $(".gdp span").text('No Record');
+    }
+
+    const url = `https://en.wikipedia.org/wiki/${gdpMap.removeSpace(country)}`;
+    $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
+  });
+
+
+  $('.year-input').submit(function(e) {
+    gdpMap.allData = [];
+    e.preventDefault();
+    const year = parseInt($(".year").val());
+    $(".slider").val(year);
+    gdpMap.renderDataByYear(year);
+  });
 }
 
 
