@@ -23434,7 +23434,9 @@ function Gdpmap () {
           if (count===6) {
             this.getGdpList(this.allData);
             let renderedData = this.getFillKeys(this.allData);
+
             let dataObj = this.toObject(renderedData);
+            console.log(dataObj);
             this.renderMap(dataObj);
           }
         }
