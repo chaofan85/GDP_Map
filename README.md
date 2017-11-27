@@ -46,7 +46,7 @@ function Gdpmap () {
 There are 6 levels to indicate different GDP value ranges, each level shows a different color. If there's no GDP available for a country, the country's color value will be `NORECORD: '#cecece'`.
 
 
-### Request GDP Data
+### Requesting GDP Data
 
 Use `$.ajax` method to request GDP data from the World Bank API.
 
@@ -64,7 +64,7 @@ this.fetchData = function(data) {
 
 However, the whole information is divided into 6 pages. A single request only can get the first page of the data by default. So I used `for` loop to send the requests 6 times to get 6 JSON files, then used `concat` method to make 6 files a whole data object.
 
-### Render Data
+### Rendering Data
 
 After receiving and organizing the data from the API, we got a GDP data object like this:
 
