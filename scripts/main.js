@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,8 +68,523 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+const CODES = {
+  "AF": "AFG",
+  "AX": "ALA",
+  "AL": "ALB",
+  "DZ": "DZA",
+  "AS": "ASM",
+  "AD": "AND",
+  "AO": "AGO",
+  "AI": "AIA",
+  "AQ": "ATA",
+  "AG": "ATG",
+  "AR": "ARG",
+  "AM": "ARM",
+  "AW": "ABW",
+  "AU": "AUS",
+  "AT": "AUT",
+  "AZ": "AZE",
+  "BS": "BHS",
+  "BH": "BHR",
+  "BD": "BGD",
+  "BB": "BRB",
+  "BY": "BLR",
+  "BE": "BEL",
+  "BZ": "BLZ",
+  "BJ": "BEN",
+  "BM": "BMU",
+  "BT": "BTN",
+  "BO": "BOL",
+  "BQ": "BES",
+  "BA": "BIH",
+  "BW": "BWA",
+  "BV": "BVT",
+  "BR": "BRA",
+  "IO": "IOT",
+  "BN": "BRN",
+  "BG": "BGR",
+  "BF": "BFA",
+  "BI": "BDI",
+  "CV": "CPV",
+  "KH": "KHM",
+  "CM": "CMR",
+  "CA": "CAN",
+  "KY": "CYM",
+  "CF": "CAF",
+  "TD": "TCD",
+  "CL": "CHL",
+  "CN": "CHN",
+  "CX": "CXR",
+  "CC": "CCK",
+  "CO": "COL",
+  "KM": "COM",
+  "CG": "COG",
+  "CD": "COD",
+  "CK": "COK",
+  "CR": "CRI",
+  "CI": "CIV",
+  "HR": "HRV",
+  "CU": "CUB",
+  "CW": "CUW",
+  "CY": "CYP",
+  "CZ": "CZE",
+  "DK": "DNK",
+  "DJ": "DJI",
+  "DM": "DMA",
+  "DO": "DOM",
+  "EC": "ECU",
+  "EG": "EGY",
+  "SV": "SLV",
+  "GQ": "GNQ",
+  "ER": "ERI",
+  "EE": "EST",
+  "ET": "ETH",
+  "FK": "FLK",
+  "FO": "FRO",
+  "FJ": "FJI",
+  "FI": "FIN",
+  "FR": "FRA",
+  "GF": "GUF",
+  "PF": "PYF",
+  "TF": "ATF",
+  "GA": "GAB",
+  "GM": "GMB",
+  "GE": "GEO",
+  "DE": "DEU",
+  "GH": "GHA",
+  "GI": "GIB",
+  "GR": "GRC",
+  "GL": "GRL",
+  "GD": "GRD",
+  "GP": "GLP",
+  "GU": "GUM",
+  "GT": "GTM",
+  "GG": "GGY",
+  "GN": "GIN",
+  "GW": "GNB",
+  "GY": "GUY",
+  "HT": "HTI",
+  "HM": "HMD",
+  "VA": "VAT",
+  "HN": "HND",
+  "HK": "HKG",
+  "HU": "HUN",
+  "IS": "ISL",
+  "IN": "IND",
+  "ID": "IDN",
+  "IR": "IRN",
+  "IQ": "IRQ",
+  "IE": "IRL",
+  "IM": "IMN",
+  "IL": "ISR",
+  "IT": "ITA",
+  "JM": "JAM",
+  "JP": "JPN",
+  "JE": "JEY",
+  "JO": "JOR",
+  "KZ": "KAZ",
+  "KE": "KEN",
+  "KI": "KIR",
+  "KP": "PRK",
+  "KR": "KOR",
+  "KW": "KWT",
+  "KG": "KGZ",
+  "LA": "LAO",
+  "LV": "LVA",
+  "LB": "LBN",
+  "LS": "LSO",
+  "LR": "LBR",
+  "LY": "LBY",
+  "LI": "LIE",
+  "LT": "LTU",
+  "LU": "LUX",
+  "MO": "MAC",
+  "MK": "MKD",
+  "MG": "MDG",
+  "MW": "MWI",
+  "MY": "MYS",
+  "MV": "MDV",
+  "ML": "MLI",
+  "MT": "MLT",
+  "MH": "MHL",
+  "MQ": "MTQ",
+  "MR": "MRT",
+  "MU": "MUS",
+  "YT": "MYT",
+  "MX": "MEX",
+  "FM": "FSM",
+  "MD": "MDA",
+  "MC": "MCO",
+  "MN": "MNG",
+  "ME": "MNE",
+  "MS": "MSR",
+  "MA": "MAR",
+  "MZ": "MOZ",
+  "MM": "MMR",
+  "NA": "NAM",
+  "NR": "NRU",
+  "NP": "NPL",
+  "NL": "NLD",
+  "NC": "NCL",
+  "NZ": "NZL",
+  "NI": "NIC",
+  "NE": "NER",
+  "NG": "NGA",
+  "NU": "NIU",
+  "NF": "NFK",
+  "MP": "MNP",
+  "NO": "NOR",
+  "OM": "OMN",
+  "PK": "PAK",
+  "PW": "PLW",
+  "PS": "PSE",
+  "PA": "PAN",
+  "PG": "PNG",
+  "PY": "PRY",
+  "PE": "PER",
+  "PH": "PHL",
+  "PN": "PCN",
+  "PL": "POL",
+  "PT": "PRT",
+  "PR": "PRI",
+  "QA": "QAT",
+  "RE": "REU",
+  "RO": "ROU",
+  "RU": "RUS",
+  "RW": "RWA",
+  "BL": "BLM",
+  "SH": "SHN",
+  "KN": "KNA",
+  "LC": "LCA",
+  "MF": "MAF",
+  "PM": "SPM",
+  "VC": "VCT",
+  "WS": "WSM",
+  "SM": "SMR",
+  "ST": "STP",
+  "SA": "SAU",
+  "SN": "SEN",
+  "RS": "SRB",
+  "SC": "SYC",
+  "SL": "SLE",
+  "SG": "SGP",
+  "SX": "SXM",
+  "SK": "SVK",
+  "SI": "SVN",
+  "SB": "SLB",
+  "SO": "SOM",
+  "ZA": "ZAF",
+  "GS": "SGS",
+  "SS": "SSD",
+  "ES": "ESP",
+  "LK": "LKA",
+  "SD": "SDN",
+  "SR": "SUR",
+  "SJ": "SJM",
+  "SZ": "SWZ",
+  "SE": "SWE",
+  "CH": "CHE",
+  "SY": "SYR",
+  "TW": "TWN",
+  "TJ": "TJK",
+  "TZ": "TZA",
+  "TH": "THA",
+  "TL": "TLS",
+  "TG": "TGO",
+  "TK": "TKL",
+  "TO": "TON",
+  "TT": "TTO",
+  "TN": "TUN",
+  "TR": "TUR",
+  "TM": "TKM",
+  "TC": "TCA",
+  "TV": "TUV",
+  "UG": "UGA",
+  "UA": "UKR",
+  "AE": "ARE",
+  "GB": "GBR",
+  "UM": "UMI",
+  "US": "USA",
+  "UY": "URY",
+  "UZ": "UZB",
+  "VU": "VUT",
+  "VE": "VEN",
+  "VN": "VNM",
+  "VG": "VGB",
+  "VI": "VIR",
+  "WF": "WLF",
+  "EH": "ESH",
+  "YE": "YEM",
+  "ZM": "ZMB",
+  "ZW": "ZWE",
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = CODES;
+
+
+const COUNTRIES = {
+  AFG: "Afghanistan",
+  ALA: "Åland Islands",
+  ALB: "Albania",
+  DZA: "Algeria",
+  ASM: "American Samoa",
+  AND: "Andorra",
+  AGO: "Angola",
+  AIA: "Anguilla",
+  ATA: "Antarctica",
+  ATG: "Antigua and Barbuda",
+  ARG: "Argentina",
+  ARM: "Armenia",
+  ABW: "Aruba",
+  AUS: "Australia",
+  AUT: "Austria",
+  AZE: "Azerbaijan",
+  BHS: "Bahamas",
+  BHR: "Bahrain",
+  BGD: "Bangladesh",
+  BRB: "Barbados",
+  BLR: "Belarus",
+  BEL: "Belgium",
+  BLZ: "Belize",
+  BEN: "Benin",
+  BMU: "Bermuda",
+  BTN: "Bhutan",
+  BOL: "Bolivia",
+  BES: "Bonaire",
+  BIH: "Bosnia and Herzegovina",
+  BWA: "Botswana",
+  BVT: "Bouvet Island",
+  BRA: "Brazil",
+  IOT: "British Indian Ocean Territory",
+  BRN: "Brunei Darussalam",
+  BGR: "Bulgaria",
+  BFA: "Burkina Faso",
+  BDI: "Burundi",
+  CPV: "Cabo Verde",
+  KHM: "Cambodia",
+  CMR: "Cameroon",
+  CAN: "Canada",
+  CYM: "Cayman Islands",
+  CAF: "Central African Republic",
+  TCD: "Chad",
+  CHL: "Chile",
+  CHN: "China",
+  CXR: "Christmas Island",
+  CCK: "Cocos (Keeling) Islands",
+  COL: "Colombia",
+  COM: "Comoros",
+  COG: "Congo",
+  COD: "Congo (Democratic Republic of the)",
+  COK: "Cook Islands",
+  CRI: "Costa Rica",
+  CIV: "Côte d'Ivoire",
+  HRV: "Croatia",
+  CUB: "Cuba",
+  CUW: "Curaçao",
+  CYP: "Cyprus",
+  CZE: "Czechia",
+  DNK: "Denmark",
+  DJI: "Djibouti",
+  DMA: "Dominica",
+  DOM: "Dominican Republic",
+  ECU: "Ecuador",
+  EGY: "Egypt",
+  SLV: "El Salvador",
+  GNQ: "Equatorial Guinea",
+  ERI: "Eritrea",
+  EST: "Estonia",
+  ETH: "Ethiopia",
+  FLK: "Falkland Islands",
+  FRO: "Faroe Islands",
+  FJI: "Fiji",
+  FIN: "Finland",
+  FRA: "France",
+  GUF: "French Guiana",
+  PYF: "French Polynesia",
+  ATF: "French Southern and Antarctic Lands",
+  GAB: "Gabon",
+  GMB: "Gambia",
+  GEO: "Georgia",
+  DEU: "Germany",
+  GHA: "Ghana",
+  GIB: "Gibraltar",
+  GRC: "Greece",
+  GRL: "Greenland",
+  GRD: "Grenada",
+  GLP: "Guadeloupe",
+  GUM: "Guam",
+  GTM: "Guatemala",
+  GGY: "Guernsey",
+  GIN: "Guinea",
+  GNB: "Guinea-Bissau",
+  GUY: "Guyana",
+  HTI: "Haiti",
+  HMD: "Heard Island and McDonald Islands",
+  VAT: "Holy See",
+  HND: "Honduras",
+  HKG: "Hong Kong",
+  HUN: "Hungary",
+  ISL: "Iceland",
+  IND: "India",
+  IDN: "Indonesia",
+  IRN: "Iran",
+  IRQ: "Iraq",
+  IRL: "Ireland",
+  IMN: "Isle of Man",
+  ISR: "Israel",
+  ITA: "Italy",
+  JAM: "Jamaica",
+  JPN: "Japan",
+  JEY: "Jersey",
+  JOR: "Jordan",
+  KAZ: "Kazakhstan",
+  KEN: "Kenya",
+  KIR: "Kiribati",
+  PRK: "North Korea",
+  KOR: "South Korea",
+  KWT: "Kuwait",
+  KGZ: "Kyrgyzstan",
+  LAO: "Laos",
+  LVA: "Latvia",
+  LBN: "Lebanon",
+  LSO: "Lesotho",
+  LBR: "Liberia",
+  LBY: "Libya",
+  LIE: "Liechtenstein",
+  LTU: "Lithuania",
+  LUX: "Luxembourg",
+  MAC: "Macao",
+  MKD: "Republic of Macedonia",
+  MDG: "Madagascar",
+  MWI: "Malawi",
+  MYS: "Malaysia",
+  MDV: "Maldives",
+  MLI: "Mali",
+  MLT: "Malta",
+  MHL: "Marshall Islands",
+  MTQ: "Martinique",
+  MRT: "Mauritania",
+  MUS: "Mauritius",
+  MYT: "Mayotte",
+  MEX: "Mexico",
+  FSM: "Federated States of Micronesia",
+  MDA: "Moldova",
+  MCO: "Monaco",
+  MNG: "Mongolia",
+  MNE: "Montenegro",
+  MSR: "Montserrat",
+  MAR: "Morocco",
+  MOZ: "Mozambique",
+  MMR: "Myanmar",
+  NAM: "Namibia",
+  NRU: "Nauru",
+  NPL: "Nepal",
+  NLD: "Netherlands",
+  NCL: "New Caledonia",
+  NZL: "New Zealand",
+  NIC: "Nicaragua",
+  NER: "Niger",
+  NGA: "Nigeria",
+  NIU: "Niue",
+  NFK: "Norfolk Island",
+  MNP: "Northern Mariana Islands",
+  NOR: "Norway",
+  OMN: "Oman",
+  PAK: "Pakistan",
+  PLW: "Palau",
+  PSE: "State of Palestine",
+  PAN: "Panama",
+  PNG: "Papua New Guinea",
+  PRY: "Paraguay",
+  PER: "Peru",
+  PHL: "Philippines",
+  PCN: "Pitcairn",
+  POL: "Poland",
+  PRT: "Portugal",
+  PRI: "Puerto Rico",
+  QAT: "Qatar",
+  REU: "Réunion",
+  ROU: "Romania",
+  RUS: "Russia",
+  RWA: "Rwanda",
+  BLM: "Saint Barthélemy",
+  SHN: "Saint Helena, Ascension and Tristan da Cunha",
+  KNA: "Saint Kitts and Nevis",
+  LCA: "Saint Lucia",
+  MAF: "Collectivity of Saint Martin",
+  SPM: "Saint Pierre and Miquelon",
+  VCT: "Saint Vincent and the Grenadines",
+  WSM: "Samoa",
+  SMR: "San Marino",
+  STP: "Sao Tome and Principe",
+  SAU: "Saudi Arabia",
+  SEN: "Senegal",
+  SRB: "Serbia",
+  SYC: "Seychelles",
+  SLE: "Sierra Leone",
+  SGP: "Singapore",
+  SXM: "Sint Maarten",
+  SVK: "Slovakia",
+  SVN: "Slovenia",
+  SLB: "Solomon Islands",
+  SOM: "Somalia",
+  ZAF: "South Africa",
+  SGS: "South Georgia and the South Sandwich Islands",
+  SSD: "South Sudan",
+  ESP: "Spain",
+  LKA: "Sri Lanka",
+  SDN: "Sudan",
+  SUR: "Suriname",
+  SJM: "Svalbard and Jan Mayen",
+  SWZ: "Swaziland",
+  SWE: "Sweden",
+  CHE: "Switzerland",
+  SYR: "Syria",
+  TWN: "Taiwan",
+  TJK: "Tajikistan",
+  TZA: "Tanzania",
+  THA: "Thailand",
+  TLS: "Timor-Leste",
+  TGO: "Togo",
+  TKL: "Tokelau",
+  TON: "Tonga",
+  TTO: "Trinidad and Tobago",
+  TUN: "Tunisia",
+  TUR: "Turkey",
+  TKM: "Turkmenistan",
+  TCA: "Turks and Caicos Islands",
+  TUV: "Tuvalu",
+  UGA: "Uganda",
+  UKR: "Ukraine",
+  ARE: "United Arab Emirates",
+  GBR: "United Kingdom",
+  USA: "United States",
+  UMI: "United States Minor Outlying Islands",
+  URY: "Uruguay",
+  UZB: 'Uzbekistan',
+  VUT: 'Vanuatu',
+  VEN: "Venezuela",
+  VNM: "Vietnam",
+  VGB: "British Virgin Islands",
+  VIR: "United States Virgin Islands",
+  WLF: "Wallis and Futuna",
+  ESH: "Western Sahara",
+  YEM: "Yemen",
+  ZMB: "Zambia",
+  ZWE: "Zimbabwe",
+};
+/* harmony export (immutable) */ __webpack_exports__["b"] = COUNTRIES;
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__showmap_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__showmap_js__ = __webpack_require__(2);
 
 
 
@@ -79,7 +594,189 @@ $(function() {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = showMap;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__country_codes_js__ = __webpack_require__(0);
+
+
+
+
+function showMap() {
+  const gdpMap = new __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__["a" /* Gdpmap */]();
+
+  renderData(gdpMap);
+  getCountryInfo(gdpMap);
+  inputYear(gdpMap);
+}
+
+function renderData(map) {
+  let startYear = parseInt($('.slider').val());
+  $('.year').text(startYear);
+  map.renderDataByYear(startYear);
+
+  $('.slider').on('input', function(){
+    map.allData = [];
+    $('.year').val(parseInt(this.value));
+    map.renderDataByYear(parseInt(this.value));
+  });
+}
+
+function getCountryInfo(map) {
+  $('svg path').on('click', function() {
+    const countryAbbr = $(this).attr('class').substr(17,19);
+    const country = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["b" /* COUNTRIES */][countryAbbr];
+    const year = $('.year').val();
+    $('h3').text(country);
+    $('.data-year').text('YEAR: ' + year);
+
+    if (map.gdpList[countryAbbr]) {
+      let countryGdp = map.gdpList[countryAbbr].toFixed(2);
+      $(".gdp span").text('GDP: $'+countryGdp+'B');
+    } else {
+      $(".gdp span").text('No Record');
+    }
+
+    const url = `https://en.wikipedia.org/wiki/${map.removeSpace(country)}`;
+    $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
+  });
+}
+
+
+function inputYear(map) {
+  $('.year-input').submit(function(e) {
+    map.allData = [];
+    e.preventDefault();
+    const year = parseInt($(".year").val());
+    $(".slider").val(year);
+    map.renderDataByYear(year);
+  });
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = Gdpmap;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_datamaps__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_datamaps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_datamaps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__country_codes_js__ = __webpack_require__(0);
+
+
+
+function Gdpmap () {
+  this.map = new __WEBPACK_IMPORTED_MODULE_0_datamaps___default.a({
+    element: document.getElementById('container'),
+    fills: {
+        LEVEL1: '#dbdd9b',
+        LEVEL2: '#9e8d5b',
+        LEVEL3: '#b3c691',
+        LEVEL4: '#518c00',
+        LEVEL5: '#ccc500',
+        LEVEL6: 'orange',
+        NORECORD: '#cecece',
+        defaultFill: '#cecece'
+    },
+    scope: 'world',
+    geographyConfig: {
+      borderColor: 'white',
+    },
+  });
+
+  this.allData = [];
+  this.gdpList = {};
+
+  this.renderDataByYear = function(year) {
+    let count = 0;
+    for (var i = 0; i < 6; i++) {
+      this.fetchDataByYear(year, i+1).then(
+        payload => {
+          this.allData = this.allData.concat(payload[1]);
+          count++;
+
+          if (count===6) {
+            this.getGdpList(this.allData);
+            let renderedData = this.getFillKeys(this.allData);
+
+            let dataObj = this.toObject(renderedData);
+            this.renderMap(dataObj);
+          }
+        }
+      );
+    }
+  };
+
+  this.getGdpList = function(data) {
+    let gdpArr = data.map(countryData => {
+      let code = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["a" /* CODES */][countryData.country.id];
+      return {
+        [code]: countryData.value/1000000000
+      };
+    });
+    this.gdpList = Object.assign({}, ...gdpArr);
+  };
+
+  this.getFillKeys = function(data) {
+    return data.map(countryData => {
+      let code = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["a" /* CODES */][countryData.country.id];
+      return {
+        [code]: {fillKey: this.getFillKey((countryData.value/1000000000))}
+      };
+    });
+  };
+
+  this.getFillKey = function(data) {
+    if (!data) { return "NORECORD"; }
+    if (data < 1) { return "LEVEL1"; }
+    if (data < 10) { return "LEVEL2"; }
+    if (data < 100) { return "LEVEL3"; }
+    if (data < 1000) { return "LEVEL4"; }
+    if (data < 5000) { return "LEVEL5"; }
+    if (data >= 5000) { return "LEVEL6"; }
+  };
+
+  this.renderMap = function(data) {
+    this.map.updateChoropleth(data);
+  };
+
+  this.toObject = function(arr) {
+    return Object.assign({}, ...arr);
+  };
+
+
+  this.fetchDataByYear = function(year, page){
+    let data = {
+      format: 'json',
+      date: year,
+      page: page
+    };
+    return this.fetchData(data);
+  };
+
+
+  this.fetchData = function(data) {
+    return $.ajax({
+      url: 'https://accesscontrolalloworiginall.herokuapp.com/http://api.worldbank.org/countries/all/indicators/NY.GDP.MKTP.CD',
+      dataType: 'json',
+      async: true,
+      data: data
+    });
+  };
+
+  this.removeSpace = function(country) {
+    return country.split(" ").join("_");
+  };
+
+}
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function() {
@@ -12729,8 +13426,8 @@ $(function() {
 
   // Expose library
   if (true) {
-    d3 = __webpack_require__(2);
-    topojson = __webpack_require__(3);
+    d3 = __webpack_require__(5);
+    topojson = __webpack_require__(6);
     module.exports = Datamap;
   }
   else if ( typeof define === "function" && define.amd ) {
@@ -12760,7 +13457,7 @@ $(function() {
 
 
 /***/ }),
-/* 2 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
@@ -22323,7 +23020,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
 }();
 
 /***/ }),
-/* 3 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
@@ -22873,704 +23570,6 @@ exports.presimplify = presimplify;
 Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-const CODES = {
-  "AF": "AFG",
-  "AX": "ALA",
-  "AL": "ALB",
-  "DZ": "DZA",
-  "AS": "ASM",
-  "AD": "AND",
-  "AO": "AGO",
-  "AI": "AIA",
-  "AQ": "ATA",
-  "AG": "ATG",
-  "AR": "ARG",
-  "AM": "ARM",
-  "AW": "ABW",
-  "AU": "AUS",
-  "AT": "AUT",
-  "AZ": "AZE",
-  "BS": "BHS",
-  "BH": "BHR",
-  "BD": "BGD",
-  "BB": "BRB",
-  "BY": "BLR",
-  "BE": "BEL",
-  "BZ": "BLZ",
-  "BJ": "BEN",
-  "BM": "BMU",
-  "BT": "BTN",
-  "BO": "BOL",
-  "BQ": "BES",
-  "BA": "BIH",
-  "BW": "BWA",
-  "BV": "BVT",
-  "BR": "BRA",
-  "IO": "IOT",
-  "BN": "BRN",
-  "BG": "BGR",
-  "BF": "BFA",
-  "BI": "BDI",
-  "CV": "CPV",
-  "KH": "KHM",
-  "CM": "CMR",
-  "CA": "CAN",
-  "KY": "CYM",
-  "CF": "CAF",
-  "TD": "TCD",
-  "CL": "CHL",
-  "CN": "CHN",
-  "CX": "CXR",
-  "CC": "CCK",
-  "CO": "COL",
-  "KM": "COM",
-  "CG": "COG",
-  "CD": "COD",
-  "CK": "COK",
-  "CR": "CRI",
-  "CI": "CIV",
-  "HR": "HRV",
-  "CU": "CUB",
-  "CW": "CUW",
-  "CY": "CYP",
-  "CZ": "CZE",
-  "DK": "DNK",
-  "DJ": "DJI",
-  "DM": "DMA",
-  "DO": "DOM",
-  "EC": "ECU",
-  "EG": "EGY",
-  "SV": "SLV",
-  "GQ": "GNQ",
-  "ER": "ERI",
-  "EE": "EST",
-  "ET": "ETH",
-  "FK": "FLK",
-  "FO": "FRO",
-  "FJ": "FJI",
-  "FI": "FIN",
-  "FR": "FRA",
-  "GF": "GUF",
-  "PF": "PYF",
-  "TF": "ATF",
-  "GA": "GAB",
-  "GM": "GMB",
-  "GE": "GEO",
-  "DE": "DEU",
-  "GH": "GHA",
-  "GI": "GIB",
-  "GR": "GRC",
-  "GL": "GRL",
-  "GD": "GRD",
-  "GP": "GLP",
-  "GU": "GUM",
-  "GT": "GTM",
-  "GG": "GGY",
-  "GN": "GIN",
-  "GW": "GNB",
-  "GY": "GUY",
-  "HT": "HTI",
-  "HM": "HMD",
-  "VA": "VAT",
-  "HN": "HND",
-  "HK": "HKG",
-  "HU": "HUN",
-  "IS": "ISL",
-  "IN": "IND",
-  "ID": "IDN",
-  "IR": "IRN",
-  "IQ": "IRQ",
-  "IE": "IRL",
-  "IM": "IMN",
-  "IL": "ISR",
-  "IT": "ITA",
-  "JM": "JAM",
-  "JP": "JPN",
-  "JE": "JEY",
-  "JO": "JOR",
-  "KZ": "KAZ",
-  "KE": "KEN",
-  "KI": "KIR",
-  "KP": "PRK",
-  "KR": "KOR",
-  "KW": "KWT",
-  "KG": "KGZ",
-  "LA": "LAO",
-  "LV": "LVA",
-  "LB": "LBN",
-  "LS": "LSO",
-  "LR": "LBR",
-  "LY": "LBY",
-  "LI": "LIE",
-  "LT": "LTU",
-  "LU": "LUX",
-  "MO": "MAC",
-  "MK": "MKD",
-  "MG": "MDG",
-  "MW": "MWI",
-  "MY": "MYS",
-  "MV": "MDV",
-  "ML": "MLI",
-  "MT": "MLT",
-  "MH": "MHL",
-  "MQ": "MTQ",
-  "MR": "MRT",
-  "MU": "MUS",
-  "YT": "MYT",
-  "MX": "MEX",
-  "FM": "FSM",
-  "MD": "MDA",
-  "MC": "MCO",
-  "MN": "MNG",
-  "ME": "MNE",
-  "MS": "MSR",
-  "MA": "MAR",
-  "MZ": "MOZ",
-  "MM": "MMR",
-  "NA": "NAM",
-  "NR": "NRU",
-  "NP": "NPL",
-  "NL": "NLD",
-  "NC": "NCL",
-  "NZ": "NZL",
-  "NI": "NIC",
-  "NE": "NER",
-  "NG": "NGA",
-  "NU": "NIU",
-  "NF": "NFK",
-  "MP": "MNP",
-  "NO": "NOR",
-  "OM": "OMN",
-  "PK": "PAK",
-  "PW": "PLW",
-  "PS": "PSE",
-  "PA": "PAN",
-  "PG": "PNG",
-  "PY": "PRY",
-  "PE": "PER",
-  "PH": "PHL",
-  "PN": "PCN",
-  "PL": "POL",
-  "PT": "PRT",
-  "PR": "PRI",
-  "QA": "QAT",
-  "RE": "REU",
-  "RO": "ROU",
-  "RU": "RUS",
-  "RW": "RWA",
-  "BL": "BLM",
-  "SH": "SHN",
-  "KN": "KNA",
-  "LC": "LCA",
-  "MF": "MAF",
-  "PM": "SPM",
-  "VC": "VCT",
-  "WS": "WSM",
-  "SM": "SMR",
-  "ST": "STP",
-  "SA": "SAU",
-  "SN": "SEN",
-  "RS": "SRB",
-  "SC": "SYC",
-  "SL": "SLE",
-  "SG": "SGP",
-  "SX": "SXM",
-  "SK": "SVK",
-  "SI": "SVN",
-  "SB": "SLB",
-  "SO": "SOM",
-  "ZA": "ZAF",
-  "GS": "SGS",
-  "SS": "SSD",
-  "ES": "ESP",
-  "LK": "LKA",
-  "SD": "SDN",
-  "SR": "SUR",
-  "SJ": "SJM",
-  "SZ": "SWZ",
-  "SE": "SWE",
-  "CH": "CHE",
-  "SY": "SYR",
-  "TW": "TWN",
-  "TJ": "TJK",
-  "TZ": "TZA",
-  "TH": "THA",
-  "TL": "TLS",
-  "TG": "TGO",
-  "TK": "TKL",
-  "TO": "TON",
-  "TT": "TTO",
-  "TN": "TUN",
-  "TR": "TUR",
-  "TM": "TKM",
-  "TC": "TCA",
-  "TV": "TUV",
-  "UG": "UGA",
-  "UA": "UKR",
-  "AE": "ARE",
-  "GB": "GBR",
-  "UM": "UMI",
-  "US": "USA",
-  "UY": "URY",
-  "UZ": "UZB",
-  "VU": "VUT",
-  "VE": "VEN",
-  "VN": "VNM",
-  "VG": "VGB",
-  "VI": "VIR",
-  "WF": "WLF",
-  "EH": "ESH",
-  "YE": "YEM",
-  "ZM": "ZMB",
-  "ZW": "ZWE",
-};
-/* harmony export (immutable) */ __webpack_exports__["a"] = CODES;
-
-
-const COUNTRIES = {
-  AFG: "Afghanistan",
-  ALA: "Åland Islands",
-  ALB: "Albania",
-  DZA: "Algeria",
-  ASM: "American Samoa",
-  AND: "Andorra",
-  AGO: "Angola",
-  AIA: "Anguilla",
-  ATA: "Antarctica",
-  ATG: "Antigua and Barbuda",
-  ARG: "Argentina",
-  ARM: "Armenia",
-  ABW: "Aruba",
-  AUS: "Australia",
-  AUT: "Austria",
-  AZE: "Azerbaijan",
-  BHS: "Bahamas",
-  BHR: "Bahrain",
-  BGD: "Bangladesh",
-  BRB: "Barbados",
-  BLR: "Belarus",
-  BEL: "Belgium",
-  BLZ: "Belize",
-  BEN: "Benin",
-  BMU: "Bermuda",
-  BTN: "Bhutan",
-  BOL: "Bolivia",
-  BES: "Bonaire",
-  BIH: "Bosnia and Herzegovina",
-  BWA: "Botswana",
-  BVT: "Bouvet Island",
-  BRA: "Brazil",
-  IOT: "British Indian Ocean Territory",
-  BRN: "Brunei Darussalam",
-  BGR: "Bulgaria",
-  BFA: "Burkina Faso",
-  BDI: "Burundi",
-  CPV: "Cabo Verde",
-  KHM: "Cambodia",
-  CMR: "Cameroon",
-  CAN: "Canada",
-  CYM: "Cayman Islands",
-  CAF: "Central African Republic",
-  TCD: "Chad",
-  CHL: "Chile",
-  CHN: "China",
-  CXR: "Christmas Island",
-  CCK: "Cocos (Keeling) Islands",
-  COL: "Colombia",
-  COM: "Comoros",
-  COG: "Congo",
-  COD: "Congo (Democratic Republic of the)",
-  COK: "Cook Islands",
-  CRI: "Costa Rica",
-  CIV: "Côte d'Ivoire",
-  HRV: "Croatia",
-  CUB: "Cuba",
-  CUW: "Curaçao",
-  CYP: "Cyprus",
-  CZE: "Czechia",
-  DNK: "Denmark",
-  DJI: "Djibouti",
-  DMA: "Dominica",
-  DOM: "Dominican Republic",
-  ECU: "Ecuador",
-  EGY: "Egypt",
-  SLV: "El Salvador",
-  GNQ: "Equatorial Guinea",
-  ERI: "Eritrea",
-  EST: "Estonia",
-  ETH: "Ethiopia",
-  FLK: "Falkland Islands",
-  FRO: "Faroe Islands",
-  FJI: "Fiji",
-  FIN: "Finland",
-  FRA: "France",
-  GUF: "French Guiana",
-  PYF: "French Polynesia",
-  ATF: "French Southern and Antarctic Lands",
-  GAB: "Gabon",
-  GMB: "Gambia",
-  GEO: "Georgia",
-  DEU: "Germany",
-  GHA: "Ghana",
-  GIB: "Gibraltar",
-  GRC: "Greece",
-  GRL: "Greenland",
-  GRD: "Grenada",
-  GLP: "Guadeloupe",
-  GUM: "Guam",
-  GTM: "Guatemala",
-  GGY: "Guernsey",
-  GIN: "Guinea",
-  GNB: "Guinea-Bissau",
-  GUY: "Guyana",
-  HTI: "Haiti",
-  HMD: "Heard Island and McDonald Islands",
-  VAT: "Holy See",
-  HND: "Honduras",
-  HKG: "Hong Kong",
-  HUN: "Hungary",
-  ISL: "Iceland",
-  IND: "India",
-  IDN: "Indonesia",
-  IRN: "Iran",
-  IRQ: "Iraq",
-  IRL: "Ireland",
-  IMN: "Isle of Man",
-  ISR: "Israel",
-  ITA: "Italy",
-  JAM: "Jamaica",
-  JPN: "Japan",
-  JEY: "Jersey",
-  JOR: "Jordan",
-  KAZ: "Kazakhstan",
-  KEN: "Kenya",
-  KIR: "Kiribati",
-  PRK: "North Korea",
-  KOR: "South Korea",
-  KWT: "Kuwait",
-  KGZ: "Kyrgyzstan",
-  LAO: "Laos",
-  LVA: "Latvia",
-  LBN: "Lebanon",
-  LSO: "Lesotho",
-  LBR: "Liberia",
-  LBY: "Libya",
-  LIE: "Liechtenstein",
-  LTU: "Lithuania",
-  LUX: "Luxembourg",
-  MAC: "Macao",
-  MKD: "Republic of Macedonia",
-  MDG: "Madagascar",
-  MWI: "Malawi",
-  MYS: "Malaysia",
-  MDV: "Maldives",
-  MLI: "Mali",
-  MLT: "Malta",
-  MHL: "Marshall Islands",
-  MTQ: "Martinique",
-  MRT: "Mauritania",
-  MUS: "Mauritius",
-  MYT: "Mayotte",
-  MEX: "Mexico",
-  FSM: "Federated States of Micronesia",
-  MDA: "Moldova",
-  MCO: "Monaco",
-  MNG: "Mongolia",
-  MNE: "Montenegro",
-  MSR: "Montserrat",
-  MAR: "Morocco",
-  MOZ: "Mozambique",
-  MMR: "Myanmar",
-  NAM: "Namibia",
-  NRU: "Nauru",
-  NPL: "Nepal",
-  NLD: "Netherlands",
-  NCL: "New Caledonia",
-  NZL: "New Zealand",
-  NIC: "Nicaragua",
-  NER: "Niger",
-  NGA: "Nigeria",
-  NIU: "Niue",
-  NFK: "Norfolk Island",
-  MNP: "Northern Mariana Islands",
-  NOR: "Norway",
-  OMN: "Oman",
-  PAK: "Pakistan",
-  PLW: "Palau",
-  PSE: "State of Palestine",
-  PAN: "Panama",
-  PNG: "Papua New Guinea",
-  PRY: "Paraguay",
-  PER: "Peru",
-  PHL: "Philippines",
-  PCN: "Pitcairn",
-  POL: "Poland",
-  PRT: "Portugal",
-  PRI: "Puerto Rico",
-  QAT: "Qatar",
-  REU: "Réunion",
-  ROU: "Romania",
-  RUS: "Russia",
-  RWA: "Rwanda",
-  BLM: "Saint Barthélemy",
-  SHN: "Saint Helena, Ascension and Tristan da Cunha",
-  KNA: "Saint Kitts and Nevis",
-  LCA: "Saint Lucia",
-  MAF: "Collectivity of Saint Martin",
-  SPM: "Saint Pierre and Miquelon",
-  VCT: "Saint Vincent and the Grenadines",
-  WSM: "Samoa",
-  SMR: "San Marino",
-  STP: "Sao Tome and Principe",
-  SAU: "Saudi Arabia",
-  SEN: "Senegal",
-  SRB: "Serbia",
-  SYC: "Seychelles",
-  SLE: "Sierra Leone",
-  SGP: "Singapore",
-  SXM: "Sint Maarten",
-  SVK: "Slovakia",
-  SVN: "Slovenia",
-  SLB: "Solomon Islands",
-  SOM: "Somalia",
-  ZAF: "South Africa",
-  SGS: "South Georgia and the South Sandwich Islands",
-  SSD: "South Sudan",
-  ESP: "Spain",
-  LKA: "Sri Lanka",
-  SDN: "Sudan",
-  SUR: "Suriname",
-  SJM: "Svalbard and Jan Mayen",
-  SWZ: "Swaziland",
-  SWE: "Sweden",
-  CHE: "Switzerland",
-  SYR: "Syria",
-  TWN: "Taiwan",
-  TJK: "Tajikistan",
-  TZA: "Tanzania",
-  THA: "Thailand",
-  TLS: "Timor-Leste",
-  TGO: "Togo",
-  TKL: "Tokelau",
-  TON: "Tonga",
-  TTO: "Trinidad and Tobago",
-  TUN: "Tunisia",
-  TUR: "Turkey",
-  TKM: "Turkmenistan",
-  TCA: "Turks and Caicos Islands",
-  TUV: "Tuvalu",
-  UGA: "Uganda",
-  UKR: "Ukraine",
-  ARE: "United Arab Emirates",
-  GBR: "United Kingdom",
-  USA: "United States",
-  UMI: "United States Minor Outlying Islands",
-  URY: "Uruguay",
-  UZB: 'Uzbekistan',
-  VUT: 'Vanuatu',
-  VEN: "Venezuela",
-  VNM: "Vietnam",
-  VGB: "British Virgin Islands",
-  VIR: "United States Virgin Islands",
-  WLF: "Wallis and Futuna",
-  ESH: "Western Sahara",
-  YEM: "Yemen",
-  ZMB: "Zambia",
-  ZWE: "Zimbabwe",
-};
-/* harmony export (immutable) */ __webpack_exports__["b"] = COUNTRIES;
-
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = Gdpmap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_datamaps__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_datamaps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_datamaps__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__country_codes_js__ = __webpack_require__(4);
-
-
-
-function Gdpmap () {
-  this.map = new __WEBPACK_IMPORTED_MODULE_0_datamaps___default.a({
-    element: document.getElementById('container'),
-    fills: {
-        LEVEL1: '#dbdd9b',
-        LEVEL2: '#9e8d5b',
-        LEVEL3: '#b3c691',
-        LEVEL4: '#518c00',
-        LEVEL5: '#ccc500',
-        LEVEL6: 'orange',
-        NORECORD: '#cecece',
-        defaultFill: '#cecece'
-    },
-    scope: 'world',
-    geographyConfig: {
-      borderColor: 'white',
-    },
-  });
-
-  this.allData = [];
-  this.gdpList = {};
-
-  this.renderDataByYear = function(year) {
-    let count = 0;
-    for (var i = 0; i < 6; i++) {
-      this.fetchDataByYear(year, i+1).then(
-        payload => {
-          this.allData = this.allData.concat(payload[1]);
-          count++;
-
-          if (count===6) {
-            this.getGdpList(this.allData);
-            let renderedData = this.getFillKeys(this.allData);
-
-            let dataObj = this.toObject(renderedData);
-            console.log(dataObj);
-            this.renderMap(dataObj);
-          }
-        }
-      );
-    }
-  };
-
-  this.getGdpList = function(data) {
-    let gdpArr = data.map(countryData => {
-      let code = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["a" /* CODES */][countryData.country.id];
-      return {
-        [code]: countryData.value/1000000000
-      };
-    });
-    this.gdpList = Object.assign({}, ...gdpArr);
-  };
-
-  this.getFillKeys = function(data) {
-    return data.map(countryData => {
-      let code = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["a" /* CODES */][countryData.country.id];
-      return {
-        [code]: {fillKey: this.getFillKey((countryData.value/1000000000))}
-      };
-    });
-  };
-
-  this.getFillKey = function(data) {
-    if (!data) { return "NORECORD"; }
-    if (data < 1) { return "LEVEL1"; }
-    if (data < 10) { return "LEVEL2"; }
-    if (data < 100) { return "LEVEL3"; }
-    if (data < 1000) { return "LEVEL4"; }
-    if (data < 5000) { return "LEVEL5"; }
-    if (data >= 5000) { return "LEVEL6"; }
-  };
-
-  this.renderMap = function(data) {
-    this.map.updateChoropleth(data);
-  };
-
-  this.toObject = function(arr) {
-    return Object.assign({}, ...arr);
-  };
-
-
-  this.fetchDataByYear = function(year, page){
-    let data = {
-      format: 'json',
-      date: year,
-      page: page
-    };
-    return this.fetchData(data);
-  };
-
-
-  this.fetchData = function(data) {
-    return $.ajax({
-      url: 'https://accesscontrolalloworiginall.herokuapp.com/http://api.worldbank.org/countries/all/indicators/NY.GDP.MKTP.CD',
-      dataType: 'json',
-      async: true,
-      data: data
-    });
-  };
-
-  this.removeSpace = function(country) {
-    return country.split(" ").join("_");
-  };
-
-}
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = showMap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__country_codes_js__ = __webpack_require__(4);
-
-
-
-
-function showMap() {
-  const gdpMap = new __WEBPACK_IMPORTED_MODULE_0__gdpmap_js__["a" /* Gdpmap */]();
-
-  renderData(gdpMap);
-  getCountryInfo(gdpMap);
-  inputYear(gdpMap);
-}
-
-function renderData(map) {
-  let startYear = parseInt($('.slider').val());
-  $('.year').text(startYear);
-  map.renderDataByYear(startYear);
-
-  $('.slider').on('input', function(){
-    map.allData = [];
-    $('.year').val(parseInt(this.value));
-    map.renderDataByYear(parseInt(this.value));
-  });
-}
-
-function getCountryInfo(map) {
-  $('svg path').on('click', function() {
-    const countryAbbr = $(this).attr('class').substr(17,19);
-    const country = __WEBPACK_IMPORTED_MODULE_1__country_codes_js__["b" /* COUNTRIES */][countryAbbr];
-    const year = $('.year').val();
-    $('h3').text(country);
-    $('.data-year').text('YEAR: ' + year);
-
-    if (map.gdpList[countryAbbr]) {
-      let countryGdp = map.gdpList[countryAbbr].toFixed(2);
-      $(".gdp span").text('GDP: $'+countryGdp+'B');
-    } else {
-      $(".gdp span").text('No Record');
-    }
-
-    const url = `https://en.wikipedia.org/wiki/${map.removeSpace(country)}`;
-    $(".wiki").html("<a href="+url+" target='_blank'>See More Information</a>");
-  });
-}
-
-
-function inputYear(map) {
-  $('.year-input').submit(function(e) {
-    map.allData = [];
-    e.preventDefault();
-    const year = parseInt($(".year").val());
-    $(".slider").val(year);
-    map.renderDataByYear(year);
-  });
-}
-
 
 /***/ })
 /******/ ]);
