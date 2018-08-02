@@ -11,7 +11,7 @@ GDP in current year.
 * HTML5/CSS3
 * jQuery
 * [datamaps](https://github.com/markmarkoh/datamaps)
-* [World Band API](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information)
+* [World Bank API](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information)
 
 ## Details
 
