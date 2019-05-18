@@ -1,5 +1,9 @@
 # GDP Map
 
+[View the Project](https://www.chaofan.live/GDP_Map/)
+
+![demo](images/demo.jpg)
+
 A data visualization project, which shows all countries' GDP from 1960 to 2016.
 Users can put the year in the input box or use slider to change the year, the map
 will render the data from that year.
