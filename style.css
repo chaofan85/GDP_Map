@@ -1,5 +1,5 @@
 body {
-  background: #efefef;
+  background: #666;
 }
 
 main {
@@ -14,7 +14,7 @@ section {
   border-radius: 3px;
   background: white;
   margin-top: 40px;
-  box-shadow: 0 0 8px #474747;
+  box-shadow: 0 0 8px black;
   position: relative;
   flex-wrap: wrap;
 }
