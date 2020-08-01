@@ -1,6 +1,5 @@
-import { showMap } from './showmap.js';
+import { showMap } from "./showmap.js";
 
-
-$(function() {
+$(function () {
   showMap();
 });
