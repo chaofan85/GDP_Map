@@ -17,9 +17,9 @@
     "d3": "^3.5.17",
     "datamaps": "^0.5.8",
     "topojson": "^3.0.2",
-    "webpack": "^4.44.1"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^5.0.1"
   }
 }
